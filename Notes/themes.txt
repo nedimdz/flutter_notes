@@ -1,0 +1,19 @@
+To take full advantage of Material Components in your app, you can declare a top level widget MaterialApp as the entry point to your application. MaterialApp is a convenience widget that wraps a number of widgets that are commonly required for applications implementing Material Design. It builds upon a WidgetsApp by adding Material specific functionality.
+
+You can also use a WidgetApp as your app widget, which provides some of the same functionality, but is not as rich as MaterialApp.
+
+To customize the colors and styles of any child components, pass a ThemeData object to the MaterialApp widget. For example, in the code below, the primary swatch is set to blue and text selection color is red.
+
+class SampleApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textSelectionColor: Colors.red
+      ),
+      home: SampleAppPage(),
+    );
+  }
+}

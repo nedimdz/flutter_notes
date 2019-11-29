@@ -1,0 +1,66 @@
+What is the equivalent of a LinearLayout?
+
+In Android, a LinearLayout is used to lay your widgets out linearly—either horizontally or vertically. In Flutter, use the Row or Column widgets to achieve the same result.
+
+If you notice the two code samples are identical with the exception of the “Row” and “Column” widget. The children are the same and this feature can be exploited to develop rich layouts that can change overtime with the same children.
+
+@override
+Widget build(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text('Row One'),
+      Text('Row Two'),
+      Text('Row Three'),
+      Text('Row Four'),
+    ],
+  );
+}
+
+@override
+Widget build(BuildContext context) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Text('Column One'),
+      Text('Column Two'),
+      Text('Column Three'),
+      Text('Column Four'),
+    ],
+  );
+}
+
+What is the equivalent of a RelativeLayout?
+
+A RelativeLayout lays your widgets out relative to each other. In Flutter, there are a few ways to achieve the same result.
+
+You can achieve the result of a RelativeLayout by using a combination of Column, Row, and Stack widgets. You can specify rules for the widgets constructors on how the children are laid out relative to the parent.
+
+For a good example of building a RelativeLayout in Flutter, see Collin’s answer on StackOverflow.
+https://stackoverflow.com/questions/44396075/equivalent-of-relativelayout-in-flutter
+
+
+What is the equivalent of a ScrollView?
+
+In Android, use a ScrollView to lay out your widgets—if the user’s device has a smaller screen than your content, it scrolls.
+
+In Flutter, the easiest way to do this is using the ListView widget. This might seem like overkill coming from Android, but in Flutter a ListView widget is both a ScrollView and an Android ListView.
+
+@override
+Widget build(BuildContext context) {
+  return ListView(
+    children: <Widget>[
+      Text('Row One'),
+      Text('Row Two'),
+      Text('Row Three'),
+      Text('Row Four'),
+    ],
+  );
+}
+
+
+How do I handle landscape transitions in Flutter?
+
+FlutterView handles the config change if AndroidManifest.xml contains:
+
+android:configChanges="orientation|screenSize"

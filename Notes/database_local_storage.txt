@@ -1,0 +1,52 @@
+How do I access Shared Preferences?
+
+In Android, you can store a small collection of key-value pairs using the SharedPreferences API.
+
+In Flutter, access this functionality using the Shared_Preferences plugin. This plugin wraps the functionality of both Shared Preferences and NSUserDefaults (the iOS equivalent).
+
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: RaisedButton(
+            onPressed: _incrementCounter,
+            child: Text('Increment Counter'),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+_incrementCounter() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  int counter = (prefs.getInt('counter') ?? 0) + 1;
+  print('Pressed $counter times.');
+  prefs.setInt('counter', counter);
+}
+
+
+
+
+
+How do I access SQLite in Flutter?
+
+In Android, you use SQLite to store structured data that you can query using SQL.
+
+In Flutter, access this functionality using the SQFlite plugin
+https://pub.dev/packages/sqflite
+
+
+
+How do I set up push notifications?
+
+In Android, you use Firebase Cloud Messaging to setup push notifications for your app.
+
+In Flutter, access this functionality using the Firebase Messaging plugin. For more information on using the Firebase Cloud Messaging API, see the firebase_messaging plugin documentation.
+https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_messaging
+
+https://pub.dev/packages/firebase_messaging

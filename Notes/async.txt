@@ -1,0 +1,18 @@
+What is the equivalent of runOnUiThread() in Flutter?
+
+Dart has a single-threaded execution model, with support for Isolates (a way to run Dart code on another thread), an event loop, and asynchronous programming.
+Unless you spawn an Isolate, your Dart code runs in the main UI thread and is driven by an event loop. Flutter’s event loop is equivalent to Android’s main Looper—that is, 
+the Looper that is attached to the main thread.
+
+
+For example, you can run network code without causing the UI to hang by using async/await and letting Dart do the heavy lifting:
+
+loadData() async {
+  String dataURL = "https://jsonplaceholder.typicode.com/posts";
+  http.Response response = await http.get(dataURL);
+  setState(() {
+    widgets = json.decode(response.body);
+  });
+}
+
+Once the awaited network call is done, update the UI by calling setState(), which triggers a rebuild of the widget sub-tree and updates the data.

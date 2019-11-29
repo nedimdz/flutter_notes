@@ -1,0 +1,57 @@
+While Android treats resources and assets as distinct items, Flutter apps have only assets.
+The equivalent to Android’s density buckets are:
+Android density qualifier 	Flutter pixel ratio
+ldpi 	0.75x
+mdpi 	1.0x
+hdpi 	1.5x
+xhdpi 	2.0x
+xxhdpi 	3.0x
+xxxhdpi 	4.0x
+
+Assets are located in any arbitrary folder—Flutter has no predefined folder structure. 
+You declare the assets (with location) in the pubspec.yaml file, and Flutter picks them up.
+
+As of Flutter beta 2, assets are stored in the native asset folder, and are accessed on the native side using Android’s AssetManager:
+
+val flutterAssetStream = assetManager.open("flutter_assets/assets/my_flutter_asset.png")
+
+
+To add a new image asset called my_icon.png to our Flutter project, for example, and deciding that it should live in a folder we arbitrarily called images, you would put the base image (1.0x) in the images folder, and all the other variants in sub-folders called with the appropriate ratio multiplier:
+
+images/my_icon.png       // Base: 1.0x image
+images/2.0x/my_icon.png  // 2.0x image
+images/3.0x/my_icon.png  // 3.0x image
+
+Next, you’ll need to declare these images in your pubspec.yaml file:
+
+assets:
+ - images/my_icon.jpeg
+
+You can then access your images using AssetImage:
+
+return AssetImage("images/my_icon.jpeg");
+
+or directly in an Image widget:
+
+@override
+Widget build(BuildContext context) {
+  return Image.asset("images/my_image.png");
+}
+
+Where do I store strings? How do I handle localization?
+
+Flutter currently doesn’t have a dedicated resources-like system for strings. At the moment, the best practice is to hold your copy text in a class as static fields and accessing them from there. For example:
+
+class Strings {
+  static String welcomeMessage = "Welcome To Flutter";
+}
+
+Then in your code, you can access your strings as such:
+
+Text(Strings.welcomeMessage)
+
+Postoji plugin za lokalizaciju intl 
+https://pub.dev/packages/intlhttps://pub.dev/packages/intl
+
+Kako napraviti jednostavan dizajn 
+https://blog.usejournal.com/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48

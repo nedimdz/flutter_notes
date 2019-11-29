@@ -1,0 +1,21 @@
+For example, how do you build a CustomButton that takes a label in the constructor? Create a CustomButton that composes a RaisedButton with a label, rather than by extending RaisedButton:
+
+class CustomButton extends StatelessWidget {
+  final String label;
+
+  CustomButton(this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(onPressed: () {}, child: Text(label));
+  }
+}
+
+Then use CustomButton, just as you’d use any other Flutter widget:
+
+@override
+Widget build(BuildContext context) {
+  return Center(
+    child: CustomButton("Hello"),
+  );
+}
